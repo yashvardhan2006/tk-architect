@@ -1,10 +1,10 @@
 import { Award, Users, Building2, Clock } from 'lucide-react';
 
 const stats = [
-  { icon: Building2, value: '150+', label: 'Projects Completed' },
-  { icon: Users, value: '35', label: 'Team Members' },
-  { icon: Award, value: '28', label: 'Design Awards' },
-  { icon: Clock, value: '20', label: 'Years Experience' },
+  { icon: Building2, value: '50+', label: 'Projects Completed' },
+  // { icon: Users, value: '35', label: 'Team Members' },
+  // { icon: Award, value: '28', label: 'Design Awards' },
+  { icon: Clock, value: '24', label: 'Years Experience' },
 ];
 
 const values = [
@@ -36,31 +36,19 @@ export default function About() {
             About Us
           </span>
           <h2 className="mt-4 text-4xl sm:text-5xl font-bold text-white leading-tight">
-            Aspiring to make your 
+            We bring your vision 
             <br />
-            of <span className="text-amber-400">vision a reality</span>
+             to life with <span className="text-amber-400">purpose and precision.</span>
           </h2>
         </div>
 
         {/* Main Content */}
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start"> 
           <div>
-            <p className="text-zinc-300 text-lg leading-relaxed mb-6 justify-center"> <span className='text-xl font-bold'>TK Architects</span>, a multidisciplinary design studio based in Noida providing services in field of Architecture, Interiors,<br /> Building Engineering & Project management.The team is equipped with experienced professionals in leadership of Architect Tapan Kumar, who is having more than two decades of experience on various types of building projects.</p>
-            <p className="text-zinc-300 text-lg leading-relaxed mb-6">At TK Architects, we create thoughtful architecture and interior spaces that combine aesthetics, functionality, and long-term value with a focus on modern design, practical planning and attention to detail.We deliver spaces that reflect the vision and lifestyle of our clients.We are committed to delivering a unique & sustainable design idea by complying with the client’s requirements that reflect the vision and lifestyle of our clients 
-            </p>
-            <p className="text-zinc-400 leading-relaxed mb-6">
-              Our multidisciplinary team of architects, designers, and planners
-              collaborates closely with clients to transform ambitious visions
-              into built realities. From intimate residences to towering civic
-              landmarks, we approach every project with the same rigor, passion,
-              and attention to detail.
-            </p>
-            <p className="text-zinc-400 leading-relaxed">
-              Sustainability is not an add-on — it is woven into our design DNA.
-              We champion passive strategies, low-carbon materials, and
-              regenerative systems that ensure our buildings endure for
-              generations.
-            </p>
+            <p className="text-zinc-300 text-lg leading-relaxed mb-6 justify-center"> <span className='text-xl font-bold'>TK Architects</span>, a multidisciplinary design studio based in Noida providing services in field of Architecture, Interiors, Building Engineering & Project management services.The team is equipped with experienced professionals in leadership of Architect Tapan Kumar, who is having more than two decades of experience on various types of building projects. </p>
+            <p className="text-zinc-300 text-lg leading-relaxed mb-6">At TK Architects, we create thoughtful architecture and interior spaces that combine aesthetics, functionality, and long-term value with a focus on modern design, practical planning and attention to detail. We are committed to delivering a unique & sustainable design idea by complying with the client’s requirements that reflect the vision and lifestyle of our clients and “aspiring to make your vision a reality”. </p>
+           
+          
           </div>
 
           <div className="relative">

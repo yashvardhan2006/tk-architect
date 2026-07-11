@@ -54,11 +54,17 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               {[
-                'Architectural Design',
-                'Interior Design',
-                'Urban Planning',
-                'Sustainable Design',
-                'Project Management',
+                'Architecture',
+                'Interiors',
+                 'Retrofit',
+                 'Project Management',
+                // 'Group Housing',
+                // 'Commercial Buildings',
+                // 'Corporate & IT Offices',
+                // 'Industrial Facilities',
+                // 'Schools & Educational Institutions',
+                // 'Recreational & Hospitality',
+                // 'Healthcare & Wellness',
               ].map((service) => (
                 <li key={service}>
                   <span className="text-zinc-500 text-sm">{service}</span>

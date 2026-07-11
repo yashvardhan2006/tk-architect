@@ -37,12 +37,11 @@ export default function Hero() {
             </span>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.05] tracking-tight">
-            We Shape
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-bold text-white leading-[1.05] tracking-tight">
+            Designing spaces, 
             <br />
-            <span className="text-amber-400">Spaces</span> That
+            <span className="text-amber-400">Defining Futures</span> 
             <br />
-            Inspire
           </h1>
 
           <p className="mt-8 text-lg sm:text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed font-light">

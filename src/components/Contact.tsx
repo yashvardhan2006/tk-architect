@@ -58,9 +58,10 @@ export default function Contact() {
               <div>
                 <h4 className="text-white font-semibold mb-1">Visit Us</h4>
                 <p className="text-zinc-400 text-sm leading-relaxed">
-                  1200 Architecture Drive, Suite 400
+                  Second Floor, Altf- A100, C Block, 
+Sector 58 
                   <br />
-                  New York, NY 10001
+                  Noida, Uttar Pradesh 201301.
                 </p>
               </div>
             </div>
@@ -71,7 +72,7 @@ export default function Contact() {
               </div>
               <div>
                 <h4 className="text-white font-semibold mb-1">Call Us</h4>
-                <p className="text-zinc-400 text-sm">+1 (212) 555-0147</p>
+                <p className="text-zinc-400 text-sm">+91 9811795416 </p>
               </div>
             </div>
 
@@ -81,14 +82,14 @@ export default function Contact() {
               </div>
               <div>
                 <h4 className="text-white font-semibold mb-1">Email Us</h4>
-                <p className="text-zinc-400 text-sm">hello@tkarchitects.com</p>
+                <p className="text-zinc-400 text-sm"> tkarchitects.in@gmail.com</p>
               </div>
             </div>
 
             <div className="pt-8 border-t border-zinc-800">
               <h4 className="text-white font-semibold mb-3">Office Hours</h4>
               <p className="text-zinc-400 text-sm leading-relaxed">
-                Monday — Friday: 9:00 AM — 6:00 PM
+                Monday — Friday: 9:30 AM — 6:00 PM
                 <br />
                 Saturday: By Appointment
                 <br />

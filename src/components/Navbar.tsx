@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import logo from '../assets/logos/logo2.png';
+import logo from '../assets/logos/1.png';
 const navLinks = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
@@ -25,15 +25,15 @@ export default function Navbar() {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-zinc-950/95 backdrop-blur-md shadow-lg shadow-black/20'
-          : 'bg-transparent'
-      }`}
-    >
+   <nav
+  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+    scrolled
+      ? 'bg-zinc-950/95 backdrop-blur-md shadow-lg shadow-black/20'
+      : 'bg-transparent '
+  }`}
+>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-20 md:h-28 ">
           <a
             href="#home"
             onClick={(e) => {
@@ -42,15 +42,15 @@ export default function Navbar() {
             }}
             className="flex items-center gap-3 group"
           >
-            <div className="w-10 h-10 border-2 border-amber-400 flex items-center justify-center group-hover:bg-amber-400 transition-colors duration-300">
+            {/* <div className="w-10 h-10 border-2 border-amber-400 flex items-center justify-center group-hover:bg-amber-400 transition-colors duration-300">
              <span className="text-amber-400 font-bold text-lg group-hover:text-zinc-950 transition-colors duration-300"> TK</span>
-            </div>
-            {/* <div className='w-64 h-32  rounded-xl'>
+            </div> */}
+            <div className="h-14 w-14 md:h-28 md:w-28  ">
 
                <img src={logo} alt="TK Architects logo" />
-            </div> */}
+            </div>
             <div className="hidden sm:block">
-              <span className="text-white font-semibold text-lg tracking-wide">
+              <span className="text-white font-semibold text-4xl tracking-wide">
                 TK Architects
               </span>
             </div>
@@ -65,7 +65,7 @@ export default function Navbar() {
                   e.preventDefault();
                   handleClick(link.href);
                 }}
-                className="px-4 py-2 text-sm font-medium text-zinc-300 hover:text-amber-400 transition-colors duration-300 tracking-wide uppercase"
+                className="px-4 py-2 text-lg font-medium text-zinc-300 hover:text-amber-400 transition-colors duration-300 tracking-wide uppercase"
               >
                 {link.label}
               </a>

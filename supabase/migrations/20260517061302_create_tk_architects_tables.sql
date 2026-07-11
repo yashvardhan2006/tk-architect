@@ -8,6 +8,7 @@
       - `category` (text, not null)
       - `description` (text)
       - `image_url` (text)
+      - `gallery_images` (text[])
       - `year` (int)
       - `location` (text)
       - `featured` (boolean, default false)
@@ -35,6 +36,7 @@ CREATE TABLE IF NOT EXISTS projects (
   category text NOT NULL DEFAULT 'Residential',
   description text DEFAULT '',
   image_url text DEFAULT '',
+  gallery_images text[] DEFAULT '{}',
   year int DEFAULT EXTRACT(YEAR FROM NOW())::int,
   location text DEFAULT '',
   featured boolean DEFAULT false,
@@ -88,10 +90,34 @@ CREATE POLICY "Authenticated users can read contact messages"
   USING (true);
 
 -- Insert sample projects
-INSERT INTO projects (title, category, description, image_url, year, location, featured, sort_order) VALUES
-  ('The Glass Pavilion', 'Residential', 'A stunning glass-walled residence that dissolves the boundary between interior living and the surrounding forest landscape.', 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 2024, 'Portland, OR', true, 1),
-  ('Urban Nexus Tower', 'Commercial', 'A 40-story mixed-use tower featuring a triple-height lobby and sky gardens on every tenth floor.', 'https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 2023, 'Chicago, IL', true, 2),
-  ('Serenity Wellness Center', 'Healthcare', 'A wellness retreat center designed with biophilic principles, integrating natural light and organic materials throughout.', 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 2024, 'Sedona, AZ', true, 3),
-  ('Harbor Loft Residences', 'Residential', 'Converted waterfront warehouses transformed into luxury loft apartments preserving industrial character.', 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 2022, 'Boston, MA', false, 4),
-  ('Meridian Cultural Center', 'Cultural', 'A civic cultural center with a cantilevered performance hall and open-air sculpture garden.', 'https://images.pexels.com/photos/3610160/pexels-photo-3610160.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 2023, 'Austin, TX', false, 5),
-  ('Solstice Office Campus', 'Commercial', 'A net-zero office campus with living walls, rainwater harvesting, and cross-laminated timber structure.', 'https://images.pexels.com/photos/374847/pexels-photo-374847.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 2024, 'Denver, CO', false, 6);
+INSERT INTO projects (title, category, description, image_url, gallery_images, year, location, featured, sort_order) VALUES
+  ('The Glass Pavilion', 'Residential', 'A stunning glass-walled residence that dissolves the boundary between interior living and the surrounding forest landscape.', 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', ARRAY[
+    'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    'https://images.pexels.com/photos/323775/pexels-photo-323775.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+  ], 2024, 'Portland, OR', true, 1),
+  ('Urban Nexus Tower', 'Commercial', 'A 40-story mixed-use tower featuring a triple-height lobby and sky gardens on every tenth floor.', 'https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', ARRAY[
+    'https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    'https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    'https://images.pexels.com/photos/323706/pexels-photo-323706.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+  ], 2023, 'Chicago, IL', true, 2),
+  ('Serenity Wellness Center', 'Healthcare', 'A wellness retreat center designed with biophilic principles, integrating natural light and organic materials throughout.', 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', ARRAY[
+    'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    'https://images.pexels.com/photos/4050318/pexels-photo-4050318.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+  ], 2024, 'Sedona, AZ', true, 3),
+  ('Harbor Loft Residences', 'Residential', 'Converted waterfront warehouses transformed into luxury loft apartments preserving industrial character.', 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', ARRAY[
+    'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    'https://images.pexels.com/photos/3935327/pexels-photo-3935327.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+  ], 2022, 'Boston, MA', false, 4),
+  ('Meridian Cultural Center', 'Cultural', 'A civic cultural center with a cantilevered performance hall and open-air sculpture garden.', 'https://images.pexels.com/photos/3610160/pexels-photo-3610160.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', ARRAY[
+    'https://images.pexels.com/photos/3610160/pexels-photo-3610160.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    'https://images.pexels.com/photos/1047345/pexels-photo-1047345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    'https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+  ], 2023, 'Austin, TX', false, 5),
+  ('Solstice Office Campus', 'Commercial', 'A net-zero office campus with living walls, rainwater harvesting, and cross-laminated timber structure.', 'https://images.pexels.com/photos/374847/pexels-photo-374847.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', ARRAY[
+    'https://images.pexels.com/photos/374847/pexels-photo-374847.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    'https://images.pexels.com/photos/2440471/pexels-photo-2440471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    'https://images.pexels.com/photos/3228685/pexels-photo-3228685.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+  ], 2024, 'Denver, CO', false, 6);

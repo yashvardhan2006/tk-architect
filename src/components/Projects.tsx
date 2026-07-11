@@ -1,5 +1,11 @@
-import { useState, useEffect } from 'react';
-import { ArrowUpRight, Filter } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  Filter,
+  X,
+} from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 interface Project {
@@ -8,17 +14,20 @@ interface Project {
   category: string;
   description: string;
   image_url: string;
+  gallery_images?: string[] | null;
   year: number;
   location: string;
   featured: boolean;
 }
 
-const categories = ['All', 'Residential', 'Commercial', 'Healthcare', 'Cultural'];
+const categories = ['All', 'Residential', 'Commercial/Offices','Industrial','Educational', 'Cultural'];
 
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [activeCategory, setActiveCategory] = useState('All');
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   useEffect(() => {
     fetchProjects();
@@ -36,6 +45,29 @@ export default function Projects() {
     activeCategory === 'All'
       ? projects
       : projects.filter((p) => p.category === activeCategory);
+
+  const selectedImages = useMemo(() => {
+    if (!selectedProject) {
+      return [] as string[];
+    }
+
+    const images = [
+      selectedProject.image_url,
+      ...(selectedProject.gallery_images ?? []),
+    ].filter((image): image is string => Boolean(image));
+
+    return Array.from(new Set(images));
+  }, [selectedProject]);
+
+  const openProject = (project: Project) => {
+    setSelectedProject(project);
+    setSelectedImageIndex(0);
+  };
+
+  const closeProject = () => {
+    setSelectedProject(null);
+    setSelectedImageIndex(0);
+  };
 
   return (
     <section id="projects" className="relative bg-zinc-900 py-24 lg:py-32">
@@ -78,6 +110,7 @@ export default function Projects() {
               className="group relative overflow-hidden cursor-pointer"
               onMouseEnter={() => setHoveredId(project.id)}
               onMouseLeave={() => setHoveredId(null)}
+              onClick={() => openProject(project)}
             >
               <div className="aspect-[4/5] overflow-hidden">
                 <img
@@ -140,6 +173,136 @@ export default function Projects() {
           </div>
         )}
       </div>
+
+      {selectedProject && selectedImages.length > 0 && (
+        <div className="fixed inset-0 z-[60] bg-zinc-950/95 backdrop-blur-sm">
+          <div className="absolute inset-0" onClick={closeProject} />
+
+          <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-4 py-6 sm:px-6 lg:px-8">
+            <div className="grid w-full gap-6 overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/50 lg:grid-cols-[1.4fr_0.9fr]">
+              <div className="relative bg-zinc-950">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-zinc-900">
+                  <img
+                    src={selectedImages[selectedImageIndex]}
+                    alt={selectedProject.title}
+                    className="h-full w-full object-cover"
+                  />
+
+                  <button
+                    type="button"
+                    onClick={closeProject}
+                    className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center border border-white/10 bg-zinc-950/80 text-white transition-colors hover:bg-amber-400 hover:text-zinc-950"
+                    aria-label="Close project gallery"
+                  >
+                    <X size={18} />
+                  </button>
+
+                  {selectedImages.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setSelectedImageIndex(
+                            (current) =>
+                              (current - 1 + selectedImages.length) %
+                              selectedImages.length,
+                          )
+                        }
+                        className="absolute left-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-white/10 bg-zinc-950/80 text-white transition-colors hover:bg-amber-400 hover:text-zinc-950"
+                        aria-label="Previous project photo"
+                      >
+                        <ArrowLeft size={18} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setSelectedImageIndex(
+                            (current) =>
+                              (current + 1) % selectedImages.length,
+                          )
+                        }
+                        className="absolute right-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-white/10 bg-zinc-950/80 text-white transition-colors hover:bg-amber-400 hover:text-zinc-950"
+                        aria-label="Next project photo"
+                      >
+                        <ArrowRight size={18} />
+                      </button>
+                    </>
+                  )}
+                </div>
+
+                {selectedImages.length > 1 && (
+                  <div className="flex gap-3 overflow-x-auto border-t border-zinc-800 bg-zinc-950 p-4">
+                    {selectedImages.map((image, index) => (
+                      <button
+                        key={`${image}-${index}`}
+                        type="button"
+                        onClick={() => setSelectedImageIndex(index)}
+                        className={`h-20 w-28 flex-shrink-0 overflow-hidden border transition-all ${
+                          selectedImageIndex === index
+                            ? 'border-amber-400 ring-2 ring-amber-400/30'
+                            : 'border-zinc-800 opacity-70 hover:opacity-100'
+                        }`}
+                        aria-label={`View photo ${index + 1} for ${selectedProject.title}`}
+                      >
+                        <img
+                          src={image}
+                          alt={`${selectedProject.title} thumbnail ${index + 1}`}
+                          className="h-full w-full object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div className="flex flex-col justify-between gap-8 p-6 sm:p-8 lg:p-10">
+                <div>
+                  <div className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-amber-400">
+                    <span>{selectedProject.category}</span>
+                    <span className="text-zinc-600">|</span>
+                    <span>{selectedProject.year}</span>
+                  </div>
+                  <h3 className="text-3xl font-bold text-white sm:text-4xl">
+                    {selectedProject.title}
+                  </h3>
+                  <p className="mt-3 text-sm uppercase tracking-[0.2em] text-zinc-500">
+                    {selectedProject.location}
+                  </p>
+                  <p className="mt-6 text-base leading-7 text-zinc-300">
+                    {selectedProject.description}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-zinc-500">
+                    Photo Gallery
+                  </p>
+                  <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-3">
+                    {selectedImages.map((image, index) => (
+                      <button
+                        key={`${image}-${index}`}
+                        type="button"
+                        onClick={() => setSelectedImageIndex(index)}
+                        className={`aspect-[4/3] overflow-hidden border transition-all ${
+                          selectedImageIndex === index
+                            ? 'border-amber-400 ring-2 ring-amber-400/30'
+                            : 'border-zinc-800 opacity-80 hover:opacity-100'
+                        }`}
+                      >
+                        <img
+                          src={image}
+                          alt={`${selectedProject.title} gallery image ${index + 1}`}
+                          className="h-full w-full object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
