@@ -1,4 +1,5 @@
 import { ArrowUp } from 'lucide-react';
+import logo from '../assets/logos/1.png';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -10,22 +11,22 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-3 gap-12">
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 border-2 border-amber-400 flex items-center justify-center">
-                <span className="text-amber-400 font-bold text-lg">TK</span>
-              </div>
-              <span className="text-white font-semibold text-lg tracking-wide">
+            {/* <div className="flex items-center gap-3 mb-4">
+               <div className="h-14 w-14 md:h-20 md:w-20  ">
+
+               <img src={logo} alt="TK Architects logo" />
+            </div>
+              <span className="text-white font-semibold text-xl tracking-wide">
                 TK Architects
               </span>
-            </div>
+            </div> */}
             <p className="text-zinc-500 text-sm leading-relaxed max-w-xs">
-              Award-winning architecture and design studio creating spaces that
-              inspire, endure, and give back to the world.
+             
             </p>
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4 text-sm tracking-wider uppercase">
+            <h4 className="text-amber-400 font-semibold mb-4 text-sm tracking-wider uppercase">
               Quick Links
             </h4>
             <ul className="space-y-3">
@@ -39,7 +40,7 @@ export default function Footer() {
                         .querySelector(`#${link.toLowerCase()}`)
                         ?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="text-zinc-500 hover:text-amber-400 text-sm transition-colors duration-300"
+                    className="text-white hover:text-amber-400 text-sm transition-colors duration-300"
                   >
                     {link}
                   </a>
@@ -49,7 +50,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4 text-sm tracking-wider uppercase">
+            <h4 className="text-amber-400 font-semibold mb-4 text-sm tracking-wider uppercase">
               Services
             </h4>
             <ul className="space-y-3">
@@ -67,7 +68,7 @@ export default function Footer() {
                 // 'Healthcare & Wellness',
               ].map((service) => (
                 <li key={service}>
-                  <span className="text-zinc-500 text-sm">{service}</span>
+                  <span className="text-white text-sm">{service}</span>
                 </li>
               ))}
             </ul>
