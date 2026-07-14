@@ -13,14 +13,14 @@ const values = [
       'Every project begins with a commitment to push creative boundaries while honoring the fundamental principles of spatial design.',
   },
   {
-    title: 'Attentive',
-    description:
-      'Delivering personalized care and focus to every client, insuring their unique needs are understood and met with precision',
-  },
-  {
     title: 'Human-Centered',
     description:
       'Architecture serves people. We design spaces that enhance well-being, foster community, and elevate daily life.',
+  },
+  {
+    title: 'Attentive',
+    description:
+      'Delivering personalized care and focus to every client, insuring their unique needs are understood and met with precision',
   },
 ];
 
