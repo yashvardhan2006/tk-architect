@@ -34,7 +34,7 @@ export default function About() {
           <span className="text-amber-400 text-sm font-semibold tracking-[0.3em] uppercase">
             About Us
           </span>
-          <h2 className="mt-4 text-4xl sm:text-5xl font-bold text-white leading-tight">
+          <h2 className="mt-4 text-4xl sm:text-4xl font-bold text-white leading-tight">
             We bring your vision 
             <br />
              to life with <span className="text-amber-400">purpose and precision.</span>

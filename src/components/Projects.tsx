@@ -20,7 +20,7 @@ interface Project {
   featured: boolean;
 }
 
-const categories = ['All', 'Residential', 'Commercial/Offices','Industrial','Educational', 'Cultural'];
+const categories = ['All', 'Residential', 'Commercial','Office Interiors','Industrial','Educational', 'Cultural','Master Planning'];
 
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);

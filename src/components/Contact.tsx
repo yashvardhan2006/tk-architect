@@ -58,7 +58,7 @@ export default function Contact() {
               <div>
                 <h4 className="text-white font-semibold mb-1">Visit Us</h4>
                 <p className="text-zinc-400 text-sm leading-relaxed">
-                  Second Floor, Altf- A100, C Block, 
+                  Second Floor, Altf- A100, 
 Sector 58 
                   <br />
                   Noida, Uttar Pradesh 201301.
