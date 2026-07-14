@@ -37,7 +37,7 @@ export default function Projects() {
   const fetchProjects = async () => {
     const { data } = await supabase
       .from('projects')
-      .select('*')
+      .select('id, title, category, description, image_url, gallery_images, year, location, featured')
       .order('sort_order', { ascending: true });
     if (data) setProjects(data);
   };
@@ -121,6 +121,8 @@ export default function Projects() {
                 <img
                   src={project.image_url}
                   alt={project.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
@@ -202,6 +204,8 @@ export default function Projects() {
                   <img
                     src={selectedImages[selectedImageIndex]}
                     alt={selectedProject.title}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover"
                   />
 
@@ -264,6 +268,8 @@ export default function Projects() {
                         <img
                           src={image}
                           alt={`${selectedProject.title} thumbnail ${index + 1}`}
+                          loading="lazy"
+                          decoding="async"
                           className="h-full w-full object-cover"
                         />
                       </button>
