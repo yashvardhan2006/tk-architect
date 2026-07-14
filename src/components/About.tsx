@@ -13,9 +13,9 @@ const values = [
       'Every project begins with a commitment to push creative boundaries while honoring the fundamental principles of spatial design.',
   },
   {
-    title: 'Sustainable Vision',
+    title: 'Attentive',
     description:
-      'We integrate environmental responsibility into every decision, creating buildings that give back more than they take.',
+      'Delivering personalized care and focus to every client, insuring their unique needs are understood and met with precision',
   },
   {
     title: 'Human-Centered',
