@@ -28,6 +28,7 @@ export default function Projects() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
   useEffect(() => {
     fetchProjects();
@@ -45,6 +46,10 @@ export default function Projects() {
     activeCategory === 'All'
       ? projects
       : projects.filter((p) => p.category === activeCategory);
+
+  const visibleProjects = showAllProjects
+    ? filtered
+    : filtered.slice(0, 6);
 
   const selectedImages = useMemo(() => {
     if (!selectedProject) {
@@ -104,7 +109,7 @@ export default function Projects() {
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((project) => (
+          {visibleProjects.map((project) => (
             <div
               key={project.id}
               className="group relative overflow-hidden cursor-pointer"
@@ -170,6 +175,18 @@ export default function Projects() {
         {filtered.length === 0 && (
           <div className="text-center py-20 text-zinc-500">
             No projects found in this category.
+          </div>
+        )}
+
+        {filtered.length > 6 && (
+          <div className="mt-10 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setShowAllProjects((current) => !current)}
+              className="inline-flex items-center rounded-full border border-amber-400 bg-transparent px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-amber-400 transition hover:bg-amber-400 hover:text-zinc-950"
+            >
+              {showAllProjects ? 'Show Less' : 'View More'}
+            </button>
           </div>
         )}
       </div>
